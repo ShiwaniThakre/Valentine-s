@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valentine Surprise ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            color: #fff;
+            animation: fadeIn 2s ease;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            background: #fff;
+            color: #ff4d6d;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Envelope */
+        .envelope {
+            width: 260px;
+            height: 180px;
+            background: #fff;
+            margin: auto;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        .flap {
+            width: 100%;
+            height: 50%;
+            background: #ff4d6d;
+            position: absolute;
+            top: 0;
+            left: 0;
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+        }
+
+        .letter {
+            width: 90%;
+            height: 70%;
+            background: #ffe6ea;
+            position: absolute;
+            bottom: 10px;
+            left: 5%;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff4d6d;
+            font-weight: 600;
+        }
+
+        /* Popup Card */
+        .card {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .card-content {
+            background: #fff;
+            padding: 30px 25px;
+            border-radius: 20px;
+            text-align: center;
+            width: 90%;
+            max-width: 350px;
+            animation: pop 0.6s ease;
+        }
+
+        .card-content h2 {
+            font-family: 'Pacifico', cursive;
+            color: #ff4d6d;
+            margin-bottom: 10px;
+        }
+
+        .card-content p {
+            color: #555;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .heart {
+            font-size: 2.5rem;
+            animation: pulse 1s infinite;
+            color: #ff4d6d;
+        }
+
+        /* Floating Hearts */
+        .heart-float {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 18px;
+            animation: floatUp 6s linear infinite;
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(-120vh);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>💌 Valentine Special 💌</h1>
+        <p class="for-name">For Saurabh ❤️</p>
+        <p>You received a surprise message. Click the envelope!</p>
+
+        <div class="envelope" onclick="openCard()">
+            <div class="flap"></div>
+            <div class="letter">Open Me ❤️</div>
+        </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div class="card" id="success">
+        <div class="card-content" style="background:linear-gradient(135deg,#ff7eb3,#ff758c);color:#fff;">
+            <h2 style="color:#fff;">😍 Yayyyy! 😍</h2>
+            <p style="color:#fff;font-size:1.1rem;">You took best decision of your life!!! <br>
+            <h1>I Love You..🤍</h1>
+            </p>
+            <div class="heart">💍</div>
+            <br>
+            <button class="btn" onclick="document.getElementById('success').style.display='none'">Aww ❤️</button>
+        </div>
+    </div>
+
+    <!-- Popup Card -->
+    <div class="card" id="card">
+        <div class="card-content">
+            <h2>Happy Valentine's Day ❤️</h2>
+            <p>You make my life beautiful. Thank you for being my Valentine 💕</p>
+            <p style="margin-top:10px;font-weight:600;color:#ff4d6d;">Will you be my Valentine? 💖</p>
+            <div style="display:flex;gap:15px;justify-content:center;margin-top:15px;">
+                <button class="btn" onclick="yesClick()">Yes 😍</button>
+                <button class="btn" id="noBtn" onmouseover="moveNo()">No 🙈</button>
+            </div>
+            <div class="heart">💖</div>
+            <br>
+            <button class="btn" onclick="closeCard()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function openCard() {
+            document.getElementById('card').style.display = 'flex';
+            document.getElementById('success').style.display = 'none';
+        }
+
+        function closeCard() {
+            document.getElementById('card').style.display = 'none';
+        }
+
+        function yesClick() {
+            document.getElementById('card').style.display = 'none';
+            document.getElementById('success').style.display = 'flex';
+        }
+
+        function moveNo() {
+            const btn = document.getElementById('noBtn');
+            btn.style.position = 'absolute';
+            btn.style.left = Math.random() * 70 + '%';
+            btn.style.top = Math.random() * 70 + '%';
+        }
+
+        // Floating hearts
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-float');
+            heart.innerHTML = '❤';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = 3 + Math.random() * 4 + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 7000);
+        }, 400);
+    </script>
+
+</body>
+
+</html>
